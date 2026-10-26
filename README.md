@@ -1,8 +1,10 @@
 # OTInstaller agent plugin
 
-Open-source OSINT tools for AI agents, with your consent. This plugin connects Claude Code or Cursor to
-[OTInstaller](https://otinstaller.com) through `ot mcp`, the MCP server built into the `ot` command. It adds skills for
-investigating, packaging tools and writing guides.
+The OSINT package manager for AI agents, with your consent. Your agent installs and runs any of the over 130 tools in
+[OTInstaller](https://otinstaller.com), the largest registry built only for OSINT tools, with one call each: no
+cloning, no Python versions, no flags to look up, and every result in the same JSON. This plugin connects Claude Code
+or Cursor to `ot mcp`, the MCP server built into the `ot` command, and adds skills for investigating, packaging tools
+and writing guides.
 
 Tools run on **your machine**, each in a locked-down container. The agent asks you before any run that touches a
 target, goes online or involves a person's identifiers, and every run is logged locally (`ot mcp audit`). Read
@@ -10,8 +12,19 @@ target, goes online or involves a person's identifiers, and every run is logged 
 
 ## Install
 
-1. Install `ot` v0.14.0 or later, v0.16.0 for updates through `install_tool` (`ot self-update` updates an older one): https://otinstaller.com/docs/getting-started.
-   Docker (or Podman) must be running, and cosign must be installed for agents to install tools.
+1. Install `ot` 0.14.0 or later (0.16.0 or later for updates through `install_tool`; `ot self-update` updates an
+   older one):
+
+   ```bash
+   curl -fsSL https://get.otinstaller.com/ot | sh     # macOS and Linux
+   ```
+
+   ```powershell
+   irm https://get.otinstaller.com/ot.ps1 | iex       # Windows
+   ```
+
+   Docker (or Podman) must be running, and `cosign` must be installed: agents only install tools whose signature they
+   can check. `ot doctor` checks both. More in [getting started](https://otinstaller.com/docs/getting-started).
 2. Add the plugin:
 
    - **Claude Code**
